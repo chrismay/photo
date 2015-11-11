@@ -1,0 +1,20 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:axon="http://www.axonframework.org/schema/core"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+
+    <axon:event-sourcing-repository id="competitionAggregateRepository"
+                                    aggregate-type="uk.co.blackpepper.photocomp.competition.CompetitionAggregate"/>
+
+
+    <bean id="competitionRepository" class="uk.co.blackpepper.photocomp.competition.AxonCompetitionRepository">
+        <constructor-arg ref="competitionAggregateRepository"/>
+    </bean>
+
+    <bean id="createCompetitionHandler" class="uk.co.blackpepper.photocomp.competition.CreateCompetition">
+        <constructor-arg ref="competitionRepository"/>
+    </bean>
+
+
+</beans>

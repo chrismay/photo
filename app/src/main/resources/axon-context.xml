@@ -1,0 +1,18 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:axon="http://www.axonframework.org/schema/core"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+
+    <axon:command-bus id="commandBus"/>
+    <axon:event-bus id="eventBus"/>
+    <axon:annotation-config/>
+
+    <axon:filesystem-event-store id="eventStore" base-dir="events"/>
+
+    <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
+        <property name="commandBus" ref="commandBus"/>
+    </bean>
+
+
+</beans>

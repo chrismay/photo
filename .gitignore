@@ -1,0 +1,8 @@
+acc-tests/docker/
+*.swp
+*~
+tomcat.env
+**/target/
+**/*.iml
+**/.idea/
+events/

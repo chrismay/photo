@@ -1,0 +1,24 @@
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:axon="http://www.axonframework.org/schema/core"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+                           http://www.axonframework.org/schema/core http://www.axonframework.org/schema/axon-core-2.0.xsd">
+
+
+    <axon:event-sourcing-repository id="submissionAggregateRepository"
+                                    aggregate-type="uk.co.blackpepper.photocomp.submission.SubmissionAggregate"/>
+
+
+    <bean id="submissionRepository" class="uk.co.blackpepper.photocomp.submission.AxonSubmissionRepository">
+        <constructor-arg ref="submissionAggregateRepository"/>
+    </bean>
+
+    <bean id="submitPhotoCommandHandler" class="uk.co.blackpepper.photocomp.submission.SubmitPhoto">
+        <constructor-arg ref="submissionRepository"/>
+    </bean>
+
+    <bean id="retractPhotoCommandHandler" class="uk.co.blackpepper.photocomp.submission.RetractPhoto">
+        <constructor-arg ref="submissionRepository"/>
+    </bean>
+
+</beans>

@@ -2,14 +2,13 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>uk.co.blackpepper.photocomp</groupId>
-    <artifactId>photo-competition-web-module</artifactId>
+    <artifactId>photo-competition-active-competition-view-module</artifactId>
     <version>1.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <name>photo-competition-web-module</name>
+    <name>photo-competition-active-competition-view-module</name>
     <modules>
-        <module>webapp</module>
-        <module>client</module>
-
+        <module>api</module>
+        <module>service</module>
     </modules>
 
     <properties>

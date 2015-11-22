@@ -1,0 +1,9 @@
+Java HotSpot(TM) 64-Bit Server VM warning: ignoring option MaxPermSize=350m; support was removed in 8.0
+log4j:WARN No appenders could be found for logger (io.netty.util.internal.logging.InternalLoggerFactory).
+log4j:WARN Please initialize the log4j system properly.
+log4j:WARN See http://logging.apache.org/log4j/1.2/faq.html#noconfig for more info.
+[1311414]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: editor for id: editor.preferences.import 
+[4625600]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: editor for id: editor.preferences.import 
+[5175957]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: editor for id: editor.preferences.import 
+[5652754]   WARN - ConfigurableExtensionPointUtil - ignore deprecated groupId: editor for id: editor.preferences.import 
+[8257830]   WARN - pl.local.NativeFileWatcherImpl - Watcher terminated with exit code 0 

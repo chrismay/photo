@@ -1,19 +1,23 @@
 package uk.co.blackpepper.photocomp.web;
 
-import java.util.UUID;
+import java.io.IOException;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import uk.co.blackpepper.photocomp.service.api.CommandDispatcher;
-import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableRetractPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableSubmitPhotoCommand;
+
+import static uk.co.blackpepper.photocomp.service.api.AggregateId.newAggregateId;
 
 @RestController
 public class SubmitPhotoController
 {
-
 
     private final CommandDispatcher dispatcher;
 
@@ -23,27 +27,25 @@ public class SubmitPhotoController
         this.dispatcher = dispatcher;
     }
 
-    @RequestMapping("/photo")
-    public String index()
+    @RequestMapping(value = "/competition/{competitionId}/photos", method = RequestMethod.POST)
+    public String add(
+        @PathVariable String competitionId,
+        @RequestParam MultipartFile file,
+        @RequestParam String caption) throws IOException
     {
-        String submissionId = UUID.randomUUID().toString();
+        String submissionId = newAggregateId();
 
         Object submit = ImmutableSubmitPhotoCommand.builder()
             .submissionId(submissionId)
-            .caption("test")
-            .photoContent("xxx".getBytes())
+            .caption(caption)
+            .photoContent(file.getBytes())
             .uploadedBy("test")
+            .competitionId(competitionId)
             .build();
 
 
         dispatcher.dispatchCommand(submit);
 
-        Object retract = ImmutableRetractPhotoCommand.builder()
-            .submissionId(submissionId)
-            .build();
-
-        dispatcher.dispatchCommand(retract);
-
-        return "Greetings from Spring Boot! - created and retracted " + submissionId;
+        return "{\"id\": \"" + submissionId + "\"}";
     }
 }

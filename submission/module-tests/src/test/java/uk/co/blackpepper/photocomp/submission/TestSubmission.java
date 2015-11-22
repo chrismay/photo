@@ -6,7 +6,12 @@ import org.axonframework.test.FixtureConfiguration;
 import org.axonframework.test.Fixtures;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.mockito.Mock;
+import org.mockito.runners.MockitoJUnitRunner;
 
+import uk.co.blackpepper.photocomp.active.ActiveCompetitionQuery;
+import uk.co.blackpepper.photocomp.active.ImmutableActiveCompetition;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableRetractPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableSubmitPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.RetractPhotoCommand;
@@ -14,10 +19,16 @@ import uk.co.blackpepper.photocomp.submission.api.commands.SubmitPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.events.ImmutablePhotoSubmittedEvent;
 import uk.co.blackpepper.photocomp.submission.api.events.ImmutableSubmissionRetractedEvent;
 
+import static org.mockito.Mockito.when;
+
+@RunWith(MockitoJUnitRunner.class)
 public class TestSubmission
 {
 
-    private FixtureConfiguration fixture;
+    private FixtureConfiguration<SubmissionAggregate> fixture;
+
+    @Mock
+    private ActiveCompetitionQuery competitionQuery;
 
     @Before
     public void setUp() throws Exception
@@ -25,20 +36,25 @@ public class TestSubmission
         fixture = Fixtures.newGivenWhenThenFixture(SubmissionAggregate.class);
         Repository<SubmissionAggregate> submissionAggregateRepository = fixture.getRepository();
         SubmissionRepository repo = new AxonSubmissionRepository(submissionAggregateRepository);
-        SubmitPhoto submitPhoto = new SubmitPhoto(repo);
+        SubmitPhoto submitPhoto = new SubmitPhoto(repo, competitionQuery);
         RetractPhoto retractPhoto = new RetractPhoto(repo);
         fixture.registerAnnotatedCommandHandler(submitPhoto);
         fixture.registerAnnotatedCommandHandler(retractPhoto);
+
+        when(competitionQuery.getCurrent()).thenReturn(
+            ImmutableActiveCompetition.builder().competitionId("current").topic("test").build());
     }
 
     @Test
     public void canCreate()
     {
+
         SubmitPhotoCommand command = ImmutableSubmitPhotoCommand.builder()
             .submissionId("aaa")
             .caption("test")
             .photoContent("xxx".getBytes())
             .uploadedBy("test")
+            .competitionId("current")
             .build();
 
         fixture.given()
@@ -51,8 +67,28 @@ public class TestSubmission
                     .caption("test")
                     .photoContent("xxx".getBytes())
                     .uploadedBy("test")
+                    .competitionId("current")
                     .build()
             );
+    }
+
+    @Test
+    public void cantCreateForNonCurrentCompetition()
+    {
+
+        SubmitPhotoCommand command = ImmutableSubmitPhotoCommand.builder()
+            .submissionId("aaa")
+            .caption("test")
+            .photoContent("xxx".getBytes())
+            .uploadedBy("test")
+            .competitionId("not-current")
+            .build();
+
+        fixture.given()
+            .when(new GenericCommandMessage<>(
+                SubmitPhotoCommand.class.getName(), command, null)
+            )
+            .expectException(RuntimeException.class);
     }
 
     @Test
@@ -64,6 +100,7 @@ public class TestSubmission
                 .caption("test")
                 .photoContent("xxx".getBytes())
                 .uploadedBy("test")
+                .competitionId("current")
                 .build()
 
         )
@@ -88,6 +125,7 @@ public class TestSubmission
                 .caption("test")
                 .photoContent("xxx".getBytes())
                 .uploadedBy("test")
+                .competitionId("current")
                 .build(),
             ImmutableSubmissionRetractedEvent.builder()
                 .submissionId("aaa").build()

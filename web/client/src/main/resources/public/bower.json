@@ -1,0 +1,16 @@
+{
+  "name": "Photo-competition",
+  "description": "AngularJS front-end for the photo competition app",
+  "version": "0.0.0",
+  "homepage": "",
+  "license": "MIT",
+  "private": true,
+  "dependencies": {
+    "angular": "~1.4.0",
+    "angular-route": "~1.4.0",
+    "angular-loader": "~1.4.0",
+    "angular-mocks": "~1.4.0",
+    "html5-boilerplate": "~5.2.0",
+    "ng-file-upload": "~10.0.2"
+  }
+}

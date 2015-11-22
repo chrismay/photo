@@ -9,6 +9,7 @@ import org.springframework.context.annotation.ImportResource;
     "classpath:service-adapter-context.xml",
     "classpath:submission-module.xml",
     "classpath:competition-module.xml",
+    "classpath:current-competition-view.xml",
 })
 @SpringBootApplication
 public class Application

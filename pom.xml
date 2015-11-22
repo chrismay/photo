@@ -15,6 +15,7 @@
         <module>submission/aggregate-store</module>
         <module>submission/module-tests</module>
         <module>competition</module>
+        <module>active-competition</module>
         <module>web</module>
         <module>app</module>
 

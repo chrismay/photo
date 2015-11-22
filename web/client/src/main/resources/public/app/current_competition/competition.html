@@ -1,0 +1,8 @@
+<h1>Current Competition: {{competition.topic}} ({{competition.competitionId}})</h1>
+
+<a href="#/upload/{{competition.competitionId}}"> Submit a photo</a>
+New Competition topic:
+<form ng-submit="create_competition()">
+    <input ng-model="new_topic" type="text"/>
+    <input type="submit"/>
+</form>8:50am

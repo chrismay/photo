@@ -14,4 +14,6 @@ public interface SubmitPhotoCommand
     String getUploadedBy();
 
     String getCaption();
+
+    String getCompetitionId();
 }

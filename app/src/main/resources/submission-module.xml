@@ -15,6 +15,7 @@
 
     <bean id="submitPhotoCommandHandler" class="uk.co.blackpepper.photocomp.submission.SubmitPhoto">
         <constructor-arg ref="submissionRepository"/>
+        <constructor-arg ref="currentCompetitionQuery"/>
     </bean>
 
     <bean id="retractPhotoCommandHandler" class="uk.co.blackpepper.photocomp.submission.RetractPhoto">

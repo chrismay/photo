@@ -29,6 +29,7 @@ public class SubmissionAggregate extends AbstractAnnotatedAggregateRoot implemen
             .photoContent(command.getPhotoContent())
             .uploadedBy(command.getUploadedBy())
             .submissionId(command.getSubmissionId())
+            .competitionId(command.getCompetitionId())
             .build();
 
         apply(creation);

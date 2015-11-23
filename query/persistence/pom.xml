@@ -3,27 +3,33 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>uk.co.blackpepper.photocomp</groupId>
-    <artifactId>competition-aggregate-store-api</artifactId>
+    <artifactId>query-perisistence</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <packaging>jar</packaging>
+
+    <name>query-perisistence</name>
+    <url>http://maven.apache.org</url>
+
     <parent>
         <groupId>uk.co.blackpepper.photocomp</groupId>
         <artifactId>photocomp-java-parent</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
-
-    <packaging>jar</packaging>
-
-    <name>competition-aggregate-store-api</name>
-    <url>http://maven.apache.org</url>
-    
-
     <dependencies>
-        
+        <dependency>
+            <groupId>org.mapdb</groupId>
+            <artifactId>mapdb</artifactId>
+            <version>1.0.8</version>
+        </dependency>
         <dependency>
             <groupId>uk.co.blackpepper.photocomp</groupId>
-            <artifactId>competition-api</artifactId>
+            <artifactId>query-perisistence-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
-
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-databind</artifactId>
+            <version>2.6.3</version>
+        </dependency>
     </dependencies>
 </project>

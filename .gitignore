@@ -6,3 +6,6 @@ tomcat.env
 **/*.iml
 **/.idea/
 events/
+views.db
+views.db*
+

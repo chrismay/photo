@@ -10,6 +10,7 @@ import org.springframework.context.annotation.ImportResource;
     "classpath:submission-module.xml",
     "classpath:competition-module.xml",
     "classpath:submitted-photo-view.xml",
+    "classpath:map-store-context.xml",
     "classpath:current-competition-view.xml",
 })
 @SpringBootApplication

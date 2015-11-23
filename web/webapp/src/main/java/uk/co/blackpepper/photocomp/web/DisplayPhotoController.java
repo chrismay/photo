@@ -4,6 +4,7 @@ import java.io.ByteArrayInputStream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -28,7 +29,10 @@ public class DisplayPhotoController
     public ResponseEntity<InputStreamResource> show(@PathVariable String id)
     {
         SubmittedPhoto submittedPhoto = photos.getByID(id);
-
+        if (submittedPhoto == null)
+        {
+            return new ResponseEntity<InputStreamResource>(HttpStatus.NOT_FOUND);
+        }
         InputStreamResource s = new InputStreamResource(new ByteArrayInputStream(submittedPhoto.getContent()));
         return ResponseEntity.ok(s);
     }

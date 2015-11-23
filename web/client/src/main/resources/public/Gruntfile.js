@@ -28,40 +28,40 @@ module.exports = function (grunt) {
         },
 
         connect: {
-          server: {
-              options: {
-                base: appConfig.app,
-                keepalive: true,
-                port: 9000,
-                middleware: function (connect, options) {
-                      var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
-                      return [
-                          // Include the proxy first
-                          proxy,
-                          connect.static(options.base),
-                          connect.directory(options.base)
-                      ];
+            server: {
+                options: {
+                    base: appConfig.app,
+                    keepalive: true,
+                    port: 9000,
+                    middleware: function (connect, options) {
+                        var proxy = require('grunt-connect-proxy/lib/utils').proxyRequest;
+                        return [
+                            // Include the proxy first
+                            proxy,
+                            connect.static(options.base),
+                            connect.directory(options.base)
+                        ];
+                    }
                 }
-              }
-          },
-          proxies: [
-              {
-                  context: '/competition',
-                  host: 'localhost',
-                  port: 8080,
-                  https: false,
-                  xforward: false,
-                  hideHeaders: ['x-removed-header']
-              },
-              {
-                  context: '/photo',
-                  host: 'localhost',
-                  port: 8080,
-                  https: false,
-                  xforward: false,
-                  hideHeaders: ['x-removed-header']
-              }
-          ]
+            },
+            proxies: [
+                {
+                    context: '/competition',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    xforward: false,
+                    hideHeaders: ['x-removed-header']
+                },
+                {
+                    context: '/photo',
+                    host: 'localhost',
+                    port: 8080,
+                    https: false,
+                    xforward: false,
+                    hideHeaders: ['x-removed-header']
+                }
+            ]
         },
 
         jshint: {
@@ -81,21 +81,20 @@ module.exports = function (grunt) {
                     jshintrc: 'e2e-tests/.jshintrc'
                 }
             }
-        }
-        /*
-         ,
+        }/*,
 
-         exec: {
-         build_style: {
-         command: "npm install",
-         cwd: "./style"
-         },
-         copy_style: {
-         command: "cp -r fonts dist js less ../src/main/resources/static/",
-         cwd: "./style"
-         }
-         },
-         */
+        exec: {
+            build_style: {
+                command: "npm install",
+                cwd: "./style"
+            }
+            /*,
+             copy_style: {
+             command: "cp -r fonts dist js less ../src/main/resources/static/",
+             cwd: "./style"
+             }
+        }*/
+
     });
 
     grunt.registerTask('serve', [

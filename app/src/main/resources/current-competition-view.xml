@@ -3,5 +3,6 @@
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
     <bean id="currentCompetitionQuery" class="uk.co.blackpepper.photocomp.active.ActiveCompetitionRepository"/>
+    <bean id="competitionResultsQuery" class="uk.co.blackpepper.photocomp.active.CompetitionResultsRepository"/>
 
 </beans>

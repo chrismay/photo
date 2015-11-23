@@ -15,7 +15,7 @@
 
     <name>active-competition-view-api</name>
     <url>http://maven.apache.org</url>
-    
+
     <dependencies>
 
         <dependency>

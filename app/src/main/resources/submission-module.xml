@@ -22,4 +22,9 @@
         <constructor-arg ref="submissionRepository"/>
     </bean>
 
+    <bean id="castVoteCommand" class="uk.co.blackpepper.photocomp.submission.VoteForPhoto">
+        <constructor-arg ref="submissionRepository"/>
+        <constructor-arg ref="currentCompetitionQuery"/>
+    </bean>
+
 </beans>

@@ -7,6 +7,7 @@
     <packaging>pom</packaging>
     <name>photo-competition-toplevel</name>
     <modules>
+        <module>java-parent</module>
         <module>service/api</module>
         <module>service/axon-service</module>
         <module>submission/api</module>
@@ -16,6 +17,7 @@
         <module>submission/module-tests</module>
         <module>competition</module>
         <module>active-competition</module>
+        <module>submitted-photo</module>
         <module>web</module>
         <module>app</module>
 

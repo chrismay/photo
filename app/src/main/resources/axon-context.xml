@@ -12,6 +12,7 @@
 
     <bean class="org.axonframework.commandhandling.gateway.CommandGatewayFactoryBean">
         <property name="commandBus" ref="commandBus"/>
+        <property name="gatewayInterface" value="uk.co.blackpepper.photocomp.service.AxonCommandGateway"/>
     </bean>
 
 

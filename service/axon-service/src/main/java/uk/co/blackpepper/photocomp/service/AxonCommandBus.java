@@ -1,16 +1,17 @@
 package uk.co.blackpepper.photocomp.service;
 
 
+import java.util.concurrent.TimeoutException;
+
 import org.axonframework.commandhandling.GenericCommandMessage;
-import org.axonframework.commandhandling.gateway.CommandGateway;
 
 import uk.co.blackpepper.photocomp.service.api.CommandDispatcher;
 
 public class AxonCommandBus implements CommandDispatcher
 {
-    private final CommandGateway commandGateway;
+    private final AxonCommandGateway commandGateway;
 
-    public AxonCommandBus(CommandGateway commandGateway)
+    public AxonCommandBus(AxonCommandGateway commandGateway)
     {
         this.commandGateway = commandGateway;
     }
@@ -18,14 +19,26 @@ public class AxonCommandBus implements CommandDispatcher
     public void dispatchCommand(Object command)
     {
 
-        if (command.getClass().getInterfaces().length > 0)
+        try
         {
-            commandGateway.send(new GenericCommandMessage(
-                command.getClass().getInterfaces()[0].getName(), command, null));
+            if (command.getClass().getInterfaces().length > 0)
+            {
+                commandGateway.sendCommandAndWaitForCompletion(new GenericCommandMessage(
+                    command.getClass().getInterfaces()[0].getName(), command, null));
+            }
+            else
+
+            {
+                commandGateway.sendCommandAndWaitForCompletion(command);
+            }
         }
-        else
+        catch (TimeoutException e)
         {
-            commandGateway.send(command);
+            throw new RuntimeException(e);
+        }
+        catch (InterruptedException e)
+        {
+            throw new RuntimeException(e);
         }
     }
 }

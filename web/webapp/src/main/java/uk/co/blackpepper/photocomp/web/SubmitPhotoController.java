@@ -12,6 +12,8 @@ import org.springframework.web.multipart.MultipartFile;
 
 import uk.co.blackpepper.photocomp.service.api.CommandDispatcher;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableSubmitPhotoCommand;
+import uk.co.blackpepper.photocomp.web.view.CreatedAggregateResponse;
+import uk.co.blackpepper.photocomp.web.view.ImmutableCreatedAggregateResponse;
 
 import static uk.co.blackpepper.photocomp.service.api.AggregateId.newAggregateId;
 
@@ -28,7 +30,7 @@ public class SubmitPhotoController
     }
 
     @RequestMapping(value = "/competition/{competitionId}/photos", method = RequestMethod.POST)
-    public String add(
+    public CreatedAggregateResponse add(
         @PathVariable String competitionId,
         @RequestParam MultipartFile file,
         @RequestParam String caption) throws IOException
@@ -46,6 +48,6 @@ public class SubmitPhotoController
 
         dispatcher.dispatchCommand(submit);
 
-        return "{\"id\": \"" + submissionId + "\"}";
+        return ImmutableCreatedAggregateResponse.builder().id(submissionId).build();
     }
 }

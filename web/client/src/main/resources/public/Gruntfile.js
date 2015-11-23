@@ -52,7 +52,16 @@ module.exports = function (grunt) {
                   https: false,
                   xforward: false,
                   hideHeaders: ['x-removed-header']
-              }]
+              },
+              {
+                  context: '/photo',
+                  host: 'localhost',
+                  port: 8080,
+                  https: false,
+                  xforward: false,
+                  hideHeaders: ['x-removed-header']
+              }
+          ]
         },
 
         jshint: {

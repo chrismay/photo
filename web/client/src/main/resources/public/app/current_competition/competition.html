@@ -1,8 +1,29 @@
 <h1>Current Competition: {{competition.topic}} ({{competition.competitionId}})</h1>
 
 <a href="#/upload/{{competition.competitionId}}"> Submit a photo</a>
-New Competition topic:
+
+<div class="image-container">
+    <div ng-repeat="photo in competition.photos">
+        <h2>{{photo.caption}}</h2>
+        <img ng-src="/photo/{{photo.id}}"/>
+    </div>
+</div>
+
+
+<form ng-submit="vote()">
+    Name: <input type="text" ng-model="voter_name" required>
+    <i ng-show="vote.voter_name.$error.required">*required</i>
+    <br/>
+    Vote for
+    <select ng-model="vote_for_photo">
+        <option ng-repeat="photo in competition.photos" value="{{photo.id}}">{{photo.caption}}</option>
+    </select>
+    <input type="submit" />
+</form>
+<h2>Make a New Competition</h2>
+
 <form ng-submit="create_competition()">
-    <input ng-model="new_topic" type="text"/>
-    <input type="submit"/>
-</form>8:50am
+    New topic: <input ng-model="new_topic" type="text"/>
+
+    <br/><input type="submit"/>
+</form>

@@ -3,11 +3,23 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>uk.co.blackpepper.photocomp</groupId>
-    <artifactId>active-competition-view</artifactId>
+    <artifactId>submitted-photo-view</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.7</source>
+                    <target>1.7</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
     <packaging>jar</packaging>
 
-    <name>active-competition-view</name>
+    <name>submitted-photo-view</name>
     <url>http://maven.apache.org</url>
 
     <properties>
@@ -30,17 +42,12 @@
         </dependency>
         <dependency>
             <groupId>uk.co.blackpepper.photocomp</groupId>
-            <artifactId>active-competition-view-api</artifactId>
+            <artifactId>submitted-photo-view-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
         <dependency>
             <groupId>uk.co.blackpepper.photocomp</groupId>
             <artifactId>submission-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency>
-        <dependency>
-            <groupId>uk.co.blackpepper.photocomp</groupId>
-            <artifactId>submitted-photo-view-api</artifactId>
             <version>1.0-SNAPSHOT</version>
         </dependency>
     </dependencies>

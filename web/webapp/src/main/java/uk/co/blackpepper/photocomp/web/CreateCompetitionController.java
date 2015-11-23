@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 import uk.co.blackpepper.photocomp.competition.api.commands.CreateCompetitionCommand;
 import uk.co.blackpepper.photocomp.competition.api.commands.ImmutableCreateCompetitionCommand;
 import uk.co.blackpepper.photocomp.service.api.CommandDispatcher;
+import uk.co.blackpepper.photocomp.web.view.CreatedAggregateResponse;
+import uk.co.blackpepper.photocomp.web.view.ImmutableCreatedAggregateResponse;
 
 import static uk.co.blackpepper.photocomp.service.api.AggregateId.newAggregateId;
 
@@ -24,13 +26,13 @@ public class CreateCompetitionController
     }
 
     @RequestMapping(value = "/competition", method = RequestMethod.POST)
-    public String create(@RequestParam String topic)
+    public CreatedAggregateResponse create(@RequestParam String topic)
     {
         CreateCompetitionCommand command = ImmutableCreateCompetitionCommand.builder()
             .topicId(newAggregateId())
             .topic(topic)
             .build();
         dispatcher.dispatchCommand(command);
-        return "ok - created " + command.getTopicId();
+        return ImmutableCreatedAggregateResponse.builder().id(command.getTopicId()).build();
     }
 }

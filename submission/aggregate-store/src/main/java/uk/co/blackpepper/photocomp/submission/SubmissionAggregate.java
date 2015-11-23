@@ -6,7 +6,9 @@ import org.axonframework.eventsourcing.annotation.AggregateIdentifier;
 
 import uk.co.blackpepper.photocomp.submission.api.commands.RetractPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.SubmitPhotoCommand;
+import uk.co.blackpepper.photocomp.submission.api.commands.VoteForPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.events.ImmutablePhotoSubmittedEvent;
+import uk.co.blackpepper.photocomp.submission.api.events.ImmutablePhotoVotedForEvent;
 import uk.co.blackpepper.photocomp.submission.api.events.ImmutableSubmissionRetractedEvent;
 import uk.co.blackpepper.photocomp.submission.api.events.PhotoSubmittedEvent;
 import uk.co.blackpepper.photocomp.submission.api.events.SubmissionRetractedEvent;
@@ -47,6 +49,20 @@ public class SubmissionAggregate extends AbstractAnnotatedAggregateRoot implemen
     public boolean isRetracted()
     {
         return retracted;
+    }
+
+    @Override
+    public void vote(VoteForPhotoCommand command)
+    {
+        if (isRetracted())
+        {
+            throw new RuntimeException("Can't vote for this photo; it has been retracted");
+        }
+
+        apply(ImmutablePhotoVotedForEvent.builder()
+            .photoId(command.getSubmissionId())
+            .voterId(command.getUserName())
+            .build());
     }
 
     @EventHandler

@@ -10,8 +10,8 @@ import org.junit.runner.RunWith;
 import org.mockito.Mock;
 import org.mockito.runners.MockitoJUnitRunner;
 
-import uk.co.blackpepper.photocomp.active.ActiveCompetitionQuery;
-import uk.co.blackpepper.photocomp.active.ImmutableActiveCompetition;
+import uk.co.blackpepper.photocomp.active.CompetitionQuery;
+import uk.co.blackpepper.photocomp.active.ImmutablePhotoCompetition;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableRetractPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.ImmutableSubmitPhotoCommand;
 import uk.co.blackpepper.photocomp.submission.api.commands.RetractPhotoCommand;
@@ -28,7 +28,7 @@ public class TestSubmission
     private FixtureConfiguration<SubmissionAggregate> fixture;
 
     @Mock
-    private ActiveCompetitionQuery competitionQuery;
+    private CompetitionQuery competitionQuery;
 
     @Before
     public void setUp() throws Exception
@@ -42,7 +42,7 @@ public class TestSubmission
         fixture.registerAnnotatedCommandHandler(retractPhoto);
 
         when(competitionQuery.getCurrent()).thenReturn(
-            ImmutableActiveCompetition.builder().competitionId("current").topic("test").build());
+            ImmutablePhotoCompetition.builder().competitionId("current").topic("test").build());
     }
 
     @Test

@@ -5,23 +5,23 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import uk.co.blackpepper.photocomp.active.ActiveCompetition;
-import uk.co.blackpepper.photocomp.active.ActiveCompetitionQuery;
+import uk.co.blackpepper.photocomp.active.CompetitionQuery;
+import uk.co.blackpepper.photocomp.active.PhotoCompetition;
 
 @RestController
 public class ViewCompetitionController
 {
-    private final ActiveCompetitionQuery query;
+    private final CompetitionQuery query;
 
     @Autowired
-    public ViewCompetitionController(ActiveCompetitionQuery query)
+    public ViewCompetitionController(CompetitionQuery query)
     {
         this.query = query;
     }
 
     @RequestMapping(value = "/competition/current")
     @ResponseBody
-    public ActiveCompetition show()
+    public PhotoCompetition show()
     {
         return query.getCurrent();
     }

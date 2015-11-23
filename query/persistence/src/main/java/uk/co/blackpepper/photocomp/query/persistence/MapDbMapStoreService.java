@@ -2,6 +2,8 @@ package uk.co.blackpepper.photocomp.query.persistence;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.mapdb.DB;
 import org.mapdb.DBMaker;
@@ -46,18 +48,48 @@ public class MapDbMapStoreService implements MapPersistenceService
     }
 
     @Override
+    public <T> Map<String, T> getAll(final String mapname, final Class<T> targetType)
+    {
+        DB db = DBMaker.newFileDB(dbFile).make();
+        HTreeMap<String, String> map = db.getHashMap(mapname);
+        Map<String, T> ret = new HashMap<>();
+        try
+        {
+            for (Map.Entry<String, String> sourceEntry : map.entrySet())
+            {
+                ret.put(sourceEntry.getKey(), unmarshall(sourceEntry.getValue(), targetType));
+            }
+            return ret;
+        }
+        catch (IOException ex)
+        {
+            throw new RuntimeException(ex);
+        }
+        finally
+        {
+            db.close();
+        }
+    }
+
+    private <T> T unmarshall(String json, Class<T> targetType) throws IOException
+    {
+        return mapper.readValue(json, targetType);
+    }
+
+    @Override
     public <T> T get(String mapname, String key, Class<T> targetType)
     {
         DB db = DBMaker.newFileDB(dbFile).make();
         HTreeMap<String, String> map = db.getHashMap(mapname);
         String ret = map.get(key);
+
         if (ret == null)
         {
             return null;
         }
         try
         {
-            return mapper.readValue(ret, targetType);
+            return unmarshall(ret, targetType);
         }
         catch (IOException e)
         {

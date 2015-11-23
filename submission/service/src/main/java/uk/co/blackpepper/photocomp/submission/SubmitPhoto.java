@@ -2,16 +2,16 @@ package uk.co.blackpepper.photocomp.submission;
 
 import org.axonframework.commandhandling.annotation.CommandHandler;
 
-import uk.co.blackpepper.photocomp.active.ActiveCompetitionQuery;
+import uk.co.blackpepper.photocomp.active.CompetitionQuery;
 import uk.co.blackpepper.photocomp.submission.api.commands.SubmitPhotoCommand;
 
 public class SubmitPhoto
 {
 
     private final SubmissionRepository repo;
-    private final ActiveCompetitionQuery competitionQuery;
+    private final CompetitionQuery competitionQuery;
 
-    public SubmitPhoto(SubmissionRepository repo, ActiveCompetitionQuery competitionQuery)
+    public SubmitPhoto(SubmissionRepository repo, CompetitionQuery competitionQuery)
     {
         this.repo = repo;
         this.competitionQuery = competitionQuery;

@@ -2,7 +2,7 @@
        xmlns="http://www.springframework.org/schema/beans"
        xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
 
-    <bean id="currentCompetitionQuery" class="uk.co.blackpepper.photocomp.active.ActiveCompetitionRepository">
+    <bean id="currentCompetitionQuery" class="uk.co.blackpepper.photocomp.active.CompetitionRepository">
         <constructor-arg ref="mapStore"/>
     </bean>
 

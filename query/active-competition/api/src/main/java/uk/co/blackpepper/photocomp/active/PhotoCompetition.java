@@ -8,9 +8,9 @@ import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 @Value.Immutable
-@JsonSerialize(as = ImmutableActiveCompetition.class)
-@JsonDeserialize(as = ImmutableActiveCompetition.class)
-public interface ActiveCompetition
+@JsonSerialize(as = ImmutablePhotoCompetition.class)
+@JsonDeserialize(as = ImmutablePhotoCompetition.class)
+public interface PhotoCompetition
 {
     String competitionId();
 

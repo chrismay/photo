@@ -42,7 +42,7 @@ public class TestSubmission
         fixture.registerAnnotatedCommandHandler(retractPhoto);
 
         when(competitionQuery.getCurrent()).thenReturn(
-            ImmutablePhotoCompetition.builder().competitionId("current").topic("test").build());
+            ImmutablePhotoCompetition.builder().competitionId("current").topic("test").active(true).build());
     }
 
     @Test

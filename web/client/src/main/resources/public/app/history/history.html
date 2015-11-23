@@ -1,0 +1,28 @@
+<h1>All Competitions</h1>
+
+
+<h2>Make a New Competition</h2>
+
+<form ng-submit="create_competition()">
+    New topic: <input ng-model="new_topic" type="text"/>
+
+    <br/><input type="submit"/>
+</form>
+
+
+<table border="1">
+    <tr>
+        <th>Topic</th>
+        <th>Active</th>
+        <th>Submissions</th>
+        <th>Votes</th>
+    </tr>
+    <tr ng-repeat="competition in competitions">
+        <td>{{competition.topic}}</td>
+        <td>{{competition.active}}</td>
+        <td>{{competition.photos.length}}</td>
+        <td>{{competition.usersVoted.length}}</td>
+    </tr>
+</table>
+
+

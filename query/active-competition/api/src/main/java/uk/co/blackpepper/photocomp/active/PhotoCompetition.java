@@ -16,6 +16,8 @@ public interface PhotoCompetition
 
     String topic();
 
+    boolean active();
+
     Set<ActivePhoto> photos();
 
     Set<String> usersVoted();

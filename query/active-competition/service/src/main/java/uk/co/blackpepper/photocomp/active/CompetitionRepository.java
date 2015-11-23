@@ -26,19 +26,29 @@ public class CompetitionRepository implements CompetitionQuery
     @EventHandler
     public void onCompetitionCreated(CompetitionCreatedEvent event)
     {
-        PhotoCompetition competition = ImmutablePhotoCompetition.builder()
+
+        PhotoCompetition previousActive = getCurrentActive();
+
+        PhotoCompetition newCompetition = ImmutablePhotoCompetition.builder()
             .competitionId(event.getCompetitionId())
             .topic(event.getTopic())
+            .active(true)
             .usersVoted(Collections.<String>emptySet())
             .build();
-        mapStore.put(ACTIVE_MAP_NAME, CURRENT_KEY, competition);
-        mapStore.put(ALL_COMPETITIONS_MAP_NAME, competition.competitionId(), competition);
+        mapStore.put(ACTIVE_MAP_NAME, CURRENT_KEY, newCompetition);
+        mapStore.put(ALL_COMPETITIONS_MAP_NAME, newCompetition.competitionId(), newCompetition);
+        // Mark the previously-active competition as no longer active
+        mapStore.put(ALL_COMPETITIONS_MAP_NAME, previousActive.competitionId(),
+            ImmutablePhotoCompetition.builder()
+                .from(previousActive)
+                .active(false)
+                .build());
     }
 
     @EventHandler
     public void onPhotoSubmitted(PhotoSubmittedEvent event)
     {
-        PhotoCompetition currentActive = mapStore.get(ACTIVE_MAP_NAME, CURRENT_KEY, PhotoCompetition.class);
+        PhotoCompetition currentActive = getCurrentActive();
         PhotoCompetition updated = ImmutablePhotoCompetition.builder()
             .from(currentActive)
             .addPhotos(ImmutableActivePhoto.builder()
@@ -54,10 +64,15 @@ public class CompetitionRepository implements CompetitionQuery
         mapStore.put(ALL_COMPETITIONS_MAP_NAME, updated.competitionId(), updated);
     }
 
+    private PhotoCompetition getCurrentActive()
+    {
+        return mapStore.get(ACTIVE_MAP_NAME, CURRENT_KEY, PhotoCompetition.class);
+    }
+
     @EventHandler
     public void onVoteCast(PhotoVotedForEvent event)
     {
-        PhotoCompetition currentActive = mapStore.get(ACTIVE_MAP_NAME, CURRENT_KEY, PhotoCompetition.class);
+        PhotoCompetition currentActive = getCurrentActive();
         PhotoCompetition updated = ImmutablePhotoCompetition.builder()
             .from(currentActive)
             .addUsersVoted(event.getVoterId())
@@ -68,7 +83,7 @@ public class CompetitionRepository implements CompetitionQuery
 
     public PhotoCompetition getCurrent()
     {
-        return mapStore.get(ACTIVE_MAP_NAME, CURRENT_KEY, PhotoCompetition.class);
+        return getCurrentActive();
     }
 
     @Override

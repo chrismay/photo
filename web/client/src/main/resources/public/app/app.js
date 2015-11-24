@@ -4,8 +4,6 @@
 angular.module('photos', [
   'ngRoute',
   'ngFileUpload',
-  'photos.competition',
-  'photos.history',
   'photos.upload',
   'photos.version'
 ]).

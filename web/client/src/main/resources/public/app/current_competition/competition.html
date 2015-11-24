@@ -1,22 +1,22 @@
-<h1>Current Competition: {{competition.topic}} ({{competition.competitionId}})</h1>
+<h1>Current Competition: {{vm.current.topic}} ({{vm.current.competitionId}})</h1>
 
-<a href="#/upload/{{competition.competitionId}}"> Submit a photo</a>
+<a href="#/upload/{{vm.current.competitionId}}"> Submit a photo</a>
 
 <div class="image-container">
-    <div ng-repeat="photo in competition.photos">
+    <div ng-repeat="photo in vm.current.photos">
         <h2>{{photo.caption}}</h2>
         <img ng-src="/photo/{{photo.id}}"/>
     </div>
 </div>
 
 
-<form ng-submit="vote()">
-    Name: <input type="text" ng-model="voter_name" required>
-    <i ng-show="vote.voter_name.$error.required">*required</i>
+<form ng-submit="vm.vote()">
+    Name: <input type="text" ng-model="vm.voter_name" required>
+    <i ng-show="vm.voter_name.$error.required">*required</i>
     <br/>
     Vote for
-    <select ng-model="vote_for_photo">
-        <option ng-repeat="photo in competition.photos" value="{{photo.id}}">{{photo.caption}}</option>
+    <select ng-model="vm.vote_for_photo">
+        <option ng-repeat="photo in vm.current.photos" value="{{photo.id}}">{{photo.caption}}</option>
     </select>
     <input type="submit" />
 </form>

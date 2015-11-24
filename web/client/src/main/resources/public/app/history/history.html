@@ -3,8 +3,8 @@
 
 <h2>Make a New Competition</h2>
 
-<form ng-submit="create_competition()">
-    New topic: <input ng-model="new_topic" type="text"/>
+<form ng-submit="vm.create_competition()">
+    New topic: <input ng-model="vm.new_topic" type="text"/>
 
     <br/><input type="submit"/>
 </form>
@@ -17,7 +17,7 @@
         <th>Submissions</th>
         <th>Votes</th>
     </tr>
-    <tr ng-repeat="competition in competitions">
+    <tr ng-repeat="competition in vm.competitions">
         <td>{{competition.topic}}</td>
         <td>{{competition.active}}</td>
         <td>{{competition.photos.length}}</td>

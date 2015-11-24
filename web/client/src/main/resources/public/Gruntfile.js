@@ -26,7 +26,16 @@ module.exports = function (grunt) {
                 }
             },
         },
+        karma: {
+            unit: {
+                configFile: 'karma.conf.js',
+                singleRun:true
+            },
+            watch: {
+                configFile: 'karma.conf.js'
+            }
 
+        },
         connect: {
             server: {
                 options: {
@@ -83,17 +92,17 @@ module.exports = function (grunt) {
             }
         }/*,
 
-        exec: {
-            build_style: {
-                command: "npm install",
-                cwd: "./style"
-            }
-            /*,
-             copy_style: {
-             command: "cp -r fonts dist js less ../src/main/resources/static/",
-             cwd: "./style"
-             }
-        }*/
+         exec: {
+         build_style: {
+         command: "npm install",
+         cwd: "./style"
+         }
+         /*,
+         copy_style: {
+         command: "cp -r fonts dist js less ../src/main/resources/static/",
+         cwd: "./style"
+         }
+         }*/
 
     });
 

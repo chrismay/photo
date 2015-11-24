@@ -91,8 +91,8 @@ app/                    --> all of the source files for the application
       interpolate-filter_test.js --> interpolate filter tests
   view1/                --> the view1 view template and logic
     view1.html            --> the partial template
-    competition.js              --> the controller logic
-    competition_test.js         --> tests of the controller
+    competition.app.js              --> the controller logic
+    competition.spec.js         --> tests of the controller
   view2/                --> the view2 view template and logic
     view2.html            --> the partial template
     upload.js              --> the controller logic

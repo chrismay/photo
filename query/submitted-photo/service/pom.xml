@@ -8,9 +8,10 @@
 
     <parent>
         <groupId>uk.co.blackpepper.photocomp</groupId>
-        <artifactId>photo-competition-toplevel</artifactId>
+        <artifactId>photo-competition-submitted-photo-view-module</artifactId>
         <version>1.0-SNAPSHOT</version>
     </parent>
+
     <packaging>jar</packaging>
 
     <name>submitted-photo-view</name>

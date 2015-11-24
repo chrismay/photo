@@ -7,8 +7,8 @@
     <version>1.0-SNAPSHOT</version>
     <parent>
         <groupId>uk.co.blackpepper.photocomp</groupId>
-        <artifactId>photo-competition-toplevel</artifactId>
         <version>1.0-SNAPSHOT</version>
+        <artifactId>photo-competition-competition-module</artifactId>
     </parent>
 
     <packaging>jar</packaging>

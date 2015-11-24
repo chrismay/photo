@@ -11,8 +11,9 @@
         <module>service</module>
     </modules>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <java.version>1.8</java.version>
-    </properties>
+    <parent>
+        <groupId>uk.co.blackpepper.photocomp</groupId>
+        <artifactId>photo-competition-query-module</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
 </project>

@@ -10,9 +10,12 @@
     <name>axon-service</name>
     <url>http://maven.apache.org</url>
 
-    <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    </properties>
+    <parent>
+        <groupId>uk.co.blackpepper.photocomp</groupId>
+        <artifactId>photo-competition-service-support-module</artifactId>
+        <version>1.0-SNAPSHOT</version>
+    </parent>
+
 
     <dependencies>
 

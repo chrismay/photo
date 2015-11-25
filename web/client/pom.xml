@@ -21,6 +21,8 @@
         <artifactId>frontend-maven-plugin</artifactId>
         <configuration>
           <workingDirectory>src/main/resources/public</workingDirectory>
+          <nodeVersion>v0.12.5</nodeVersion>
+          <npmVersion>2.11.2</npmVersion>
         </configuration>
         <executions>
 

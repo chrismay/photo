@@ -9,4 +9,5 @@ events/
 views.db
 views.db*
 **/.tags*
+web/client/src/main/resources/public/node/
 

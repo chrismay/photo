@@ -1,20 +1,17 @@
 'use strict';
 
-describe('photos.upload module', function() {
+describe('photo uploading', function() {
 
-  beforeEach(module('photos.upload'));
-  var scope;
-  beforeEach(function () {
-    scope = {};
-  });
+  beforeEach(module('photos'));
   var upload = function(){};
+  var photoService = function(){};
 
   describe('upload controller', function(){
 
-    it('should ....', inject(function($controller) {
+    it('should define a controller', inject(function($controller) {
       //spec body
-      var view2Ctrl = $controller('uploadCtrl',{$scope:scope, Upload:upload,$timeout:1,$routeParams:{} });
-      expect(view2Ctrl).toBeDefined();
+      var controller = $controller('UploadController',{photoService:photoService, Upload:upload,$timeout:1,$routeParams:{} });
+      expect(controller).toBeDefined();
     }));
 
   });

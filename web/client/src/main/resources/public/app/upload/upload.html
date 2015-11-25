@@ -1,30 +1,35 @@
-<div ng-controller="uploadCtrl">
-<h1> Upload a photo to competition: {{competitionId}}</h1>
+<div>
+    <h1> Upload a photo to competition: {{vm.competitionId}}</h1>
 
-<form name="submission">
-  <fieldset>
-    Caption:  <input type="text" name="caption" ng-model="caption" size="31" required>
-    <i ng-show="submission.caption.$error.required">*required</i>
+    <form name="submission">
+        <fieldset>
+            Caption: <input type="text" name="caption" ng-model="vm.caption" size="31" required>
+            <i ng-show="submission.caption.$error.required">*required</i>
 
-      <br>
-      Photo:
-    <input type="file" ngf-select ng-model="picFile" name="file"
-           accept="image/*" ngf-max-size="2MB" required>
-    <i ng-show="submission.file.$error.required">*required</i><br>
-    <i ng-show="submission.file.$error.maxSize">File too large
-      {{picFile.size / 1000000|number:1}}MB: max 2M</i>
+            <br>
+            Photo:
+            <input type="file" ngf-select ng-model="vm.picFile" name="file"
+                   accept="image/*" ngf-max-size="2MB" required>
 
-    <img ng-show="submission.file.$valid" ngf-thumbnail="picFile" class="thumb"> <button ng-click="picFile = null" ng-show="picFile">Remove</button>
-    <br>
-    <button ng-disabled="!submission.$valid"
-            ng-click="uploadPic(picFile)">Submit</button>
-      <span class="progress" ng-show="picFile.progress >= 0">
-        <div style="width:{{picFile.progress}}%"
-             ng-bind="picFile.progress + '%'"></div>
-      </span>
-    <span ng-show="picFile.result">Upload Successful</span>
-    <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
-  </fieldset>
-  <br>
-</form>
+            <i ng-show="submission.file.$error.required">*required</i><br>
+            <i ng-show="submission.file.$error.maxSize">File too large
+                {{vm.picFile.size / 1000000|number:1}}MB: max 2M</i>
+
+            <img ng-show="submission.file.$valid" ngf-thumbnail="vm.picFile" class="thumb">
+            <button ng-click="vm.picFile = null" ng-show="vm.picFile">Remove</button>
+            <br>
+            <button ng-disabled="!submission.$valid"
+                    ng-click="vm.uploadPic(vm.picFile)">Submit
+            </button>
+
+            <span class="progress" ng-show="vm.picFile.progress >= 0">
+            <div style="width:{{vm.picFile.progress}}%"
+                 ng-bind="vm.picFile.progress + '%'"></div>
+            </span>
+
+            <span ng-show="vm.picFile.result">Upload Successful</span>
+            <span class="err" ng-show="errorMsg">{{errorMsg}}</span>
+        </fieldset>
+        <br>
+    </form>
 </div>

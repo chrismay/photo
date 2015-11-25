@@ -3,9 +3,8 @@
 <a href="#/upload/{{vm.current.competitionId}}"> Submit a photo</a>
 
 <div class="image-container">
-    <div ng-repeat="photo in vm.current.photos">
-        <h2>{{photo.caption}}</h2>
-        <img ng-src="/photo/{{photo.id}}"/>
+    <div ng-repeat="entry in vm.current.photos">
+        <show-photo photo="entry"/>
     </div>
 </div>
 
@@ -20,4 +19,3 @@
     </select>
     <input type="submit" />
 </form>
-

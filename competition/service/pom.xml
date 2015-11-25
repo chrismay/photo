@@ -28,11 +28,7 @@
             <version>2.4.3</version>
             <scope>provided</scope>
         </dependency>
-        <!--dependency>
-            <groupId>uk.co.blackpepper.photocomp</groupId>
-            <artifactId>submission-aggregate-store-api</artifactId>
-            <version>1.0-SNAPSHOT</version>
-        </dependency-->
+
         <dependency>
             <groupId>uk.co.blackpepper.photocomp</groupId>
             <artifactId>competition-api</artifactId>

@@ -4,7 +4,6 @@
 angular.module('photos', [
   'ngRoute',
   'ngFileUpload',
-  'photos.upload',
   'photos.version'
 ]).
 config(['$routeProvider', function($routeProvider) {

@@ -8,4 +8,5 @@ tomcat.env
 events/
 views.db
 views.db*
+**/.tags*
 

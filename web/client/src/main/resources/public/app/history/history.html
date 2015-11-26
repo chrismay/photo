@@ -6,11 +6,11 @@
 <form ng-submit="vm.create_competition()">
     New topic: <input ng-model="vm.new_topic" type="text"/>
 
-    <br/><input type="submit"/>
+    <br/><input id="submit-new-competition-form" type="submit"/>
 </form>
 
 
-<table border="1">
+<table id="competitions_table" border="1">
     <tr>
         <th>Topic</th>
         <th>Active</th>
@@ -18,11 +18,9 @@
         <th>Votes</th>
     </tr>
     <tr ng-repeat="competition in vm.competitions">
-        <td>{{competition.topic}}</td>
+        <td class="topic_cell">{{competition.topic}}</td>
         <td>{{competition.active}}</td>
         <td>{{competition.photos.length}}</td>
         <td>{{competition.usersVoted.length}}</td>
     </tr>
 </table>
-
-

@@ -1,5 +1,15 @@
 {
   "extends": "../.jshintrc",
+  "globals": {
+    "expect": true,
+    "describe": false,
+    "it": false,
+    "require": true,
+    "beforeEach": false,
+    "afterEach": false,
+    "module": false,
+    "inject": false
+  },
   "predef": [
     "browser",
     "element",

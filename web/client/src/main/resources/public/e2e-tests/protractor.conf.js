@@ -1,19 +1,11 @@
 exports.config = {
   allScriptsTimeout: 11000,
 
+
+  framework: 'cucumber',
+
   specs: [
-    '*.js'
-  ],
+    'specs/*.feature'
+  ]
 
-  capabilities: {
-    'browserName': 'chrome'
-  },
-
-  baseUrl: 'http://localhost:8000/app/',
-
-  framework: 'jasmine',
-
-  jasmineNodeOpts: {
-    defaultTimeoutInterval: 30000
-  }
 };

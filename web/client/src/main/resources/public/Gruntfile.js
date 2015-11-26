@@ -22,13 +22,13 @@ module.exports = function(grunt) {
     protractor: {
       all: {
         options: {
-          configFile: "e2e-tests/protractor-conf.js",
-        }
+          configFile: "e2e-tests/protractor.conf.js",
+        },
       },
     },
     karma: {
       options: {
-        configFile: 'karma.conf.js',
+        configFile: 'karma.conf.js'
       },
       unit: {
         singleRun: true

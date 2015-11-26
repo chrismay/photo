@@ -1,6 +1,6 @@
 <h1>Current Competition: {{vm.current.topic}} ({{vm.current.competitionId}})</h1>
 
-<a href="#/upload/{{vm.current.competitionId}}"> Submit a photo</a>
+<a id="upload-link" href="#/upload/{{vm.current.competitionId}}"> Submit a photo</a>
 
 <div class="image-container">
     <div ng-repeat="entry in vm.current.photos">

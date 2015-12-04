@@ -5,7 +5,7 @@ tomcat.env
 **/target/
 **/*.iml
 **/.idea/
-events/
+/events/
 views.db
 views.db*
 **/.tags*
